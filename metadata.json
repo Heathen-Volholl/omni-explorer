@@ -1,0 +1,6 @@
+
+{
+  "name": "Omni Explorer",
+  "description": "A web-based file explorer that integrates with popular cloud storage services like Dropbox, Google Drive, and OneDrive. Allows users to browse, manage, and transfer files between different cloud providers in a familiar, Windows-like interface. Features real-time sync, selective sync, offline access, and version history.",
+  "requestFramePermissions": []
+}
