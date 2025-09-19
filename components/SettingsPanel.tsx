@@ -1,4 +1,44 @@
-import React from 'react';
+import React from "react";
+import type { SyncStatus } from "../types";
+
+type Props = {
+  syncStatus: SyncStatus;
+  onSyncNow?: () => void;
+};
+
+export default function SettingsPanel({ syncStatus, onSyncNow }: Props) {
+  const busy = syncStatus.state === "syncing";
+  return (
+    <section className="settings-panel">
+      <h2>Settings</h2>
+
+      <div className="card">
+        <h3>Sync</h3>
+        <p style={{ margin: "0.25rem 0" }}>
+          <strong>Status:</strong>{" "}
+          {busy ? "Synchronising…" : (syncStatus.message ?? syncStatus.state)}
+        </p>
+        <p style={{ margin: "0.25rem 0" }}>
+          <strong>Pending:</strong> {syncStatus.pendingOperations}
+        </p>
+        <p style={{ margin: "0.25rem 0" }}>
+          <strong>Last synced:</strong>{" "}
+          {syncStatus.lastSyncedAt ? syncStatus.lastSyncedAt.toLocaleString() : "—"}
+        </p>
+        <button
+          disabled={busy}
+          onClick={onSyncNow}
+          style={{
+            marginTop: "0.5rem",
+            padding: "0.5rem 0.75rem",
+            borderRadius: 8,
+            border: "1px solid var(--line, #2b3a4a)",
+            cursor: busy ? "not-allowed" : "pointer"
+          }}
+        >
+          {busy ? "Syncing…" : "Sync now"}
+        </button>
+      </div>
 import {
   CloseIcon,
   SettingsIcon,
